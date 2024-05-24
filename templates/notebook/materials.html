@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load notebook_extras %}
+{% block main %}
+    <div class="row">
+        <div class="col-md-2">
+            {% show_contents material.in_notebook.pk %}
+        </div>
+        <div class="col-md-7">
+            <article class="blog-post px-5">
+                <h2 class="blog-post-title text-center">{{ material.title }}</h2>
+                <hr>
+                <p class="fs-6 blog-post-meta text-center">{{ material.created_time }} &nbsp; <a href="{% url 'userprofile:profiles' material.in_notebook.author.pk %}">{{ material.in_notebook.author }}</a></p>
+                <hr>
+                <p class="fs-6 blog-post-body">{{ material.body|safe }}</p>
+            </article>
+        </div>
+        <div class="col-md-3">
+            <div class="position-sticky" style="top:2rem">
+                <div class="p-2 mx-1 mb-3 bg-light rounded">
+                    <h4 class="fst-italic">Contents of Chapter</h4>
+                    <h4 class="fst-italic">
+                        <a href="{% url 'notebook:material' material.pk %}">
+                            {{ material.title }}
+                        </a>
+
+                    </h4>
+                    {% if material.toc %}
+                    <div class="widget widget-content">
+                        <h3 class="widget-title">文章目录</h3>
+                            <div class="toc">
+                                <ul>
+                                    {{ material.toc|safe }}
+                                </ul>
+                            </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+{% endblock main %}

@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load article_extras %}
+{% block main %}
+    <div class="row p-4 mb-4 text-white rounded bg-dark">
+        <div class="px-4">
+            <h5 class="text-white fw-bold fst-italic">
+                <a class="text-decoration-none text-light" href="{% url 'article:index' %}"> Articles > </a>
+            </h5>
+            <h1 class="fw-bold">{{ tag_name }}</h1>
+        </div>
+    </div>
+
+    <div class="row g-5">
+        <div class="col-md-8 px-5">
+            {% for article in article_list %}
+                <article class="blog-post">
+                    <a href="{% url 'article:details' article.pk %}" class="text-dark fw-bold text-decoration-none">
+                        <h2 class="blog-post-title">{{ article.title }}</h2>
+                    </a>
+                    <p class="blog-post-meta">{{ article.modified_time }} <a href="{% url 'userprofile:profiles' article.author.pk %}">{{ article.author }}</a></p>
+                    <hr>
+                    <p>{{ article.abstract }} <a href="{% url 'article:details' article.pk %}" class="text-decoration-none"> 更多 </a>
+                    </p>
+
+                    </article>
+            {% empty %}
+                <div class="no-results">NO RESULTS</div>
+            {% endfor %}
+        </div>
+        <div class="col">
+            <div class="position-sticky" style="top:2rem">
+                {% show_recent_articles %}
+                {% show_tags %}
+            </div>
+        </div>
+
+    </div>
+
+
+
+{% endblock main %}

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block main %}
+<div class="container-fluid py-5">
+    <section class="text-center container bg-light">
+        <div class="row py-md-5">
+            <div class="col-md-10 mx-auto" >
+                <h1 class="fw-light">Articles</h1>
+                <p class="lead text-muted">文章、博客、影评、随笔 <br> 在这里记录你的一切</p>
+                <p>
+                    <a href="{% url 'article:index' %}" class="btn btn-primary my-2">看看大家写了什么</a>
+                </p>
+            </div>
+        </div>
+    </section>
+</div>
+<div class="container-fluid py-5">
+    <section class="text-center text-white container bg-dark">
+        <div class="row py-md-5">
+            <div class="col-md-10 mx-auto">
+                <h1 class="fw-light">Notes&Codes</h1>
+                <p class="lead text-muted">Talk is cheap <br> Show me the code</p>
+                <p>
+                    <a href="{% url 'notebook:index' %}" class="btn btn-secondary my-2">看看大家码了什么</a>
+                </p>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock main %}

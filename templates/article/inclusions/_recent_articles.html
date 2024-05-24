@@ -1,0 +1,10 @@
+<div class="p-4 mx-5 mb-3 bg-light rounded">
+    <h4 class="fst-italic">Recent</h4>
+    <ul class="list-unstyled mb-0">
+        {% for article in recent_articles %}
+            <li>
+            <a class="text-decoration-none link-secondary" href="{% url 'article:details' article.pk %}">{{ article.title }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+</div>

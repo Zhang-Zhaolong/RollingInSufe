@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load article_extras %}
+{% block main %}
+<div class="row">
+    <div class="col-md-8">
+        <article class="blog-post px-5">
+            <h2 class="blog-post-title text-center">{{ article.title }}</h2>
+            <hr>
+            <p class="fs-6 blog-post-meta text-center">{{ article.modified_time }} &nbsp; <a href="{% url 'userprofile:profiles' article.author.pk %}">{{ article.author }}</a></p>
+            <hr>
+            <p class="fs-6 blog-post-body">{{ article.body|linebreaksbr }}</p>
+        </article>
+    </div>
+    <div class="col">
+        <div class="position-sticky" style="top:2rem">
+            {% show_recent_articles %}
+            {% show_tags %}
+        </div>
+    </div>
+</div>
+{% endblock main %}

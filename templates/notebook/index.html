@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block main %}
+    <div class="row p-4 mb-4 text-white rounded bg-dark">
+        <div class="col-md-6 px-3">
+            <h1 class="display-4 fst-italic">Notes&Codes</h1>
+        </div>
+    </div>
+    <div class="row">
+    {% for notebook in notebook_list %}
+        <div class="col-md-4">
+            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                <div class="col p-4 d-flex flex-column position-static">
+                    <strong class="d-inline-block mb-2 text-primary">{{ notebook.course }}</strong>
+                    <h3 class="mb-0 fw-bold">
+                       <a class="text-black text-decoration-none" href="{% url 'notebook:details' notebook.pk %}">
+                           {{ notebook.notebook_name }}
+                       </a>
+                    </h3>
+                    <div class="mb-1 text-muted">{{ notebook.created_time }}</div>
+                    <div class="mb-1 text-muted">{{ notebook.author }}</div>
+                    <p class="card-text mb-auto">{{ notebook.abstract }}</p>
+                    <a href="{% url 'notebook:details' notebook.pk %}" class="text-decoration-none">Continue reading</a>
+                </div>
+            </div>
+        </div>
+    {% empty %}
+    <div class="no-results">NO RESULTS</div>
+    {% endfor %}
+    </div>
+{% endblock main %}

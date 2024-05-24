@@ -1,0 +1,16 @@
+<div class="position-sticky" style="top:2rem">
+    <div class="p-1 mx-1 mb-3 bg-light rounded">
+        <h4 class="fst-italic">Contents of Notebook</h4>
+        <h4 class="fst-italic">
+            <a class="text-decoration-none link-secondary" href="{% url 'notebook:details' notebook.pk %}">
+                {{ notebook.notebook_name }}</a>
+        </h4>
+        <ul class="list-unstyled mb-0">
+            {% for content in contents %}
+                <li>
+                <a class="text-decoration-none link-secondary" href="{% url 'notebook:material' content.pk %}">{{ content.title }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
